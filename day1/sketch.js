@@ -42,6 +42,10 @@ function setup() {
     console.log( groupList );
 
     noLoop();
+    button = createButton( "save" );
+    button.addClass( "button" );
+    button.mousePressed( () => save( "day1.png" ) );
+
 }
 
 
@@ -49,7 +53,7 @@ function draw() {
 
     const m = 10;
     const n = groups.length;
-    background( "#333" );
+    background( "#21252b" );
     scale( 1, -1 );
     translate( 0, -windowHeight );
     colorMode( HSL );
@@ -78,7 +82,5 @@ function draw() {
         }
 
     }
-
-    save( "day1.png" );
 
 }

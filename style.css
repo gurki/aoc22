@@ -1,0 +1,54 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #21252b;
+}
+
+canvas {
+  display: block;
+}
+
+.button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  vertical-align: center;
+  border: none;
+  font-size: 1em;
+  background-color: #50545e;
+  color: #b7bac2;
+}
+
+.button:hover {
+  background-color: #333842;
+}
+
+.button:active {
+  background-color: #181a1f;
+}
+
+/*
+{
+	"name": "icy-dark",
+	"em_px": 12,
+	"green": "#19a419",
+	"yellow": "#edd607",
+	"red": "#f44034",
+	"blue": "#088cff",
+	"white": "#d3d5d9",
+	"black": "#181a1f",
+	"lightGray": "#b7bac2",
+	"gray": "#9ca0ab",
+	"darkGray": "#50545e",
+	"app_background_color": "#21252b",
+	"pane_background_color": "#282c34",
+	"panel_background_color": "#333842",
+  "border_width": 1.0
+}
+*/
