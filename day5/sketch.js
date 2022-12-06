@@ -13,25 +13,24 @@ function preload() {
 
 
 function reduce( stacks, move ) {
+
     const count = move[ 0 ];
     const from = move[ 1 ] - 1;
     const to = move[ 2 ] - 1;
-    console.log( count, from + 1, to + 1 );
-    console.log( stacks[ from ], stacks[ to ] );
-    const cargo = stacks[ from ].slice( -count );
-    console.log( cargo );
+
+    const cargo = stacks[ from ].slice( -count ).reverse(); //  partA
+    // const cargo = stacks[ from ].slice( -count );   //  partB
+
     stacks[ from ] = stacks[ from ].slice( 0, -count );
     stacks[ to ] = stacks[ to ].concat( cargo );
-    console.log( stacks[ from ], stacks[ to ] );
-    console.log();
     return stacks;
+
 }
 
 
 function setup() {
 
     createCanvas( windowWidth, windowHeight );
-    noLoop();
 
     //  parse rows of crates
 
@@ -46,12 +45,16 @@ function setup() {
     stacks = new Array( stacksRowMajor[ 0 ].length );
 
     for ( let col = 0; col < stacksRowMajor[ 0 ].length; col++ ) {
+
         stacks[ col ] = [];
+
         for ( let row = 0; row < stacksRowMajor.length; row++ ) {
             const item = stacksRowMajor[ row ][ col ];
             if ( item.match( /\s/ ) === null ) stacks[ col ].push( item );
         }
+
         maxStacks = Math.max( maxStacks, stacks[ col ].length );
+
     }
 
     //  parse moves
@@ -62,7 +65,10 @@ function setup() {
         match => match.slice( 1 ).map( Number )
     );
 
+    console.log(moves);
+
     colorMode( HSL );
+    noLoop();
     window.setInterval( step, 10 );
 
 }
@@ -75,7 +81,7 @@ function keyPressed() {
 
 function step() {
 
-    // if ( ! keyIsDown( 32 ) ) return;
+    if ( ! keyIsDown( 32 ) ) return;
     if ( moveId >= moves.length ) return;
 
     console.log( Math.round( 10000 * moveId / ( moves.length - 1 ) ) / 100 );
@@ -106,7 +112,7 @@ function draw() {
     textSize( h / 2 );
 
     for ( let col = 0; col < stacks.length; col++ ) {
-        for ( let row = 0; row < stacks[ col ].length; row++ ) {
+    for ( let row = 0; row < stacks[ col ].length; row++ ) {
 
             const x = m + col * w;
             const y = windowHeight - m - ( row + 1 ) * h;
@@ -120,9 +126,8 @@ function draw() {
             fill( "black" );
             text( crate, x + w / 2, y + h / 2 );
 
-        }
-    }
+    }}
 
-    save( "frame" + ( moveId + "").padStart( 3, '0' ) + ".png" );
+    // save( "frame" + ( moveId + "").padStart( 3, '0' ) + ".png" );
 
 }
